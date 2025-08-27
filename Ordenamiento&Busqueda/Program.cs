@@ -188,23 +188,31 @@ namespace Ordenamiento_Busqueda
                 }
             }
 
-
-
             static void selectionSort(int[] array)
             {
-                for (int i = 1; i < array.Length; i++)
+                for (int i = 0; i < array.Length; i++)
                 {
-                    int current = array[i]; // 1
-                    int prev = i - 1; // 0
+                    int currentMinimum = i;
 
-                    // Mueve los elementos mayores hacia la derecha
-                    while (prev >= 0 && array[prev] > current)
+                    // [2, 5, 3, 1, 4]
+                    // [1, 5, 3, 2, 4]
+                    // [1, 2, 3, 5, 4]
+                    // [1, 2, 3, 4, 5]
+
+                    for (int j = i + 1; j < array.Length; j++)
                     {
-                        array[prev + 1] = array[prev];
-                        prev--; // -1
+                        if (array[j] < array[currentMinimum])
+                        {
+                            currentMinimum = j;
+                        }
                     }
 
-                    array[prev + 1] = current; // array[0] = current
+                    if (currentMinimum != i)
+                    {
+                        int temp = array[i];
+                        array[i] = array[currentMinimum];
+                        array[currentMinimum] = temp;
+                    }
                 }
             }
 
@@ -258,8 +266,8 @@ namespace Ordenamiento_Busqueda
                     System.Console.WriteLine("1.Busqueda Lineal"); // Check
                     System.Console.WriteLine("2 Busqueda binaria"); // Check
                     System.Console.WriteLine("3.Ordenamiento burbuja"); // Check
-                    System.Console.WriteLine("4.ordenamiento Inserccion"); 
-                    System.Console.WriteLine("5.Ordenamiento seleccion");
+                    System.Console.WriteLine("4.ordenamiento Insercion"); // Check
+                    System.Console.WriteLine("5.Ordenamiento Seleccion"); // Check
                     System.Console.WriteLine("6.Ordenamiento Shell");
                     System.Console.WriteLine("7.Ordenamiento Mezcla");
                     System.Console.WriteLine("8.Ordenamiento rapido");
@@ -326,7 +334,7 @@ namespace Ordenamiento_Busqueda
 
                             break;
 
-                         case 4:
+                        case 4:
                             System.Console.Clear();
 
                             myVector = selectQuantity();
@@ -353,15 +361,15 @@ namespace Ordenamiento_Busqueda
                             break;
 
                         case 6:
-                            System.Console.Clear();
+                            //System.Console.Clear();
 
-                            myVector = selectQuantity();
-                            fillVectorRandom(myVector, myVector.Length);
+                            //myVector = selectQuantity();
+                            //fillVectorRandom(myVector, myVector.Length);
 
-                            sw.Start();  // Inicia cronómetro
-                            shellSort(myVector, myVector.Length);
-                            sw.Stop();   // Detiene cronómetro
-                            Console.WriteLine($"Tiempo transcurrido: {sw.ElapsedMilliseconds} ms");
+                            //sw.Start();  // Inicia cronómetro
+                            //shellSort(myVector, myVector.Length);
+                            //sw.Stop();   // Detiene cronómetro
+                            //Console.WriteLine($"Tiempo transcurrido: {sw.ElapsedMilliseconds} ms");
                             
                             break;
                     }
